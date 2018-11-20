@@ -98,7 +98,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:tag="1"
+            android:onClick="onOptionClicked"
+            android:tag="0"
             android:text="Button"
             android:textColor="@android:color/white" />
 
@@ -108,7 +109,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:tag="2"
+            android:onClick="onOptionClicked"
+            android:tag="1"
             android:text="Button"
             android:textColor="@android:color/white" />
 
@@ -118,7 +120,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:tag="3"
+            android:onClick="onOptionClicked"
+            android:tag="2"
             android:text="Button"
             android:textColor="@android:color/white" />
 
@@ -128,7 +131,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:tag="4"
+            android:onClick="onOptionClicked"
+            android:tag="3"
             android:text="Button"
             android:textColor="@android:color/white" />
 
@@ -138,7 +142,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:tag="5"
+            android:onClick="onOptionClicked"
+            android:tag="4"
             android:text="Button"
             android:textColor="@android:color/white" />
 
@@ -148,9 +153,25 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:tag="6"
+            android:onClick="onOptionClicked"
+            android:tag="5"
             android:text="Button"
             android:textColor="@android:color/white" />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/cityNames"
+        android:layout_width="342dp"
+        android:layout_height="221dp"
+        android:layout_marginTop="272dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="Enter City Values"
+        android:inputType="textMultiLine"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/loggerListView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/loggerListView"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
