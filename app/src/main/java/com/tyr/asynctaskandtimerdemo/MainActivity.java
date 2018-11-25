@@ -85,8 +85,9 @@ public class MainActivity extends AppCompatActivity {
         timerSetSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
                 timerTextViewSetter(i);
-                maxTime=i;
+                maxTime = i;
             }
 
             @Override
@@ -123,70 +124,7 @@ public class MainActivity extends AppCompatActivity {
         };
         run.run();*/
     }
-    void getImage(String TypeImage){
-        try {
-        if(TypeImage.equalsIgnoreCase("SUCCESS")){
-            if(Success==null){
-                ImageDownloader imageService = new ImageDownloader();
-                Log.i("IN GET IMAGE","SUCCESS");
-                Success = imageService.execute("https://chehockey.files.wordpress.com/2014/12/winner.jpg?w=645&h=390").get();
-                changeImageView.setImageBitmap(Success);
-            }
-        } else if(TypeImage.equalsIgnoreCase("FAILURE")){
-            if(Failure==null){
-                ImageDownloader imageService = new ImageDownloader();
-                Log.i("IN GET IMAGE","FAILURE");
-                Failure = imageService.execute("https://tamil.oneindia.com/img/2016/03/08-1457414709-tamilisai-soundararajan46-600.jpg").get();
-                changeImageView.setImageBitmap(Failure);
-            }
-        } else if(TypeImage.equalsIgnoreCase("BOMB")){
-            if(Bomb==null){
-                ImageDownloader imageService = new ImageDownloader();
-                Log.i("IN GET IMAGE","BOMB");
-                Bomb = imageService.execute("https://mundabor.files.wordpress.com/2014/04/bomb.jpg").get();
-                changeImageView.setImageBitmap(Bomb);
-            }
-        } else {
-            if(OnLoad==null){
-                ImageDownloader imageService = new ImageDownloader();
-                Log.i("IN GET IMAGE","ONLOAD");
-                OnLoad = imageService.execute("https://www.thehindu.com/news/national/tamil-nadu/tbhjf5/article24962647.ece/alternates/FREE_660/TH17HRAJARAMANATHAPURAM").get();
-                changeImageView.setImageBitmap(OnLoad);
-            }
-        }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-    }
-    void stopTimer(int presentTime){
-        if(presentTime==0) {
-            getImage("FAILURE");
-            gameTimer.cancel();
-        }else{
-            getImage("SUCCESS");
-            gameTimer.cancel();;
 
-        }
-            startButton.setVisibility(View.VISIBLE);
-            timerSetSeekBar.setVisibility(View.VISIBLE);
-            loggerListView.setVisibility(View.INVISIBLE);
-            cityNames.setVisibility(View.VISIBLE);
-            isCounterActive = false;
-            timerTextView.setText("00 : 00");
-            maxTime = 0;
-            timerSetSeekBar.setProgress(0);
-    }
-
-    void onOptionClicked(View view){
-        Button OptionButton = (Button)view;
-        Log.i("IN CLICK",Integer.toString(MagicNumber));
-        if(Integer.toString(MagicNumber).equalsIgnoreCase(OptionButton.getTag().toString())){
-            stopTimer(1);
-            Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
-        };
-    }
     void startButtonClicked(View view){
         if(maxTime!=0) {
             getImage("BOMB");
@@ -226,20 +164,27 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please select valid number", Toast.LENGTH_SHORT).show();
         }
     }
-    void optionsButtonViewSetter(int firstNum){
-        optionButton1.setText(Integer.toString(firstNum));
-        optionButton1.setBackgroundResource(buttonColors[(firstNum)%6]);
-        optionButton2.setText(Integer.toString(firstNum+1));
-        optionButton2.setBackgroundResource(buttonColors[(firstNum+1)%6]);
-        optionButton3.setText(Integer.toString(firstNum+2));
-        optionButton3.setBackgroundResource(buttonColors[(firstNum+2)%6]);
-        optionButton4.setText(Integer.toString(firstNum+3));
-        optionButton4.setBackgroundResource(buttonColors[(firstNum+3)%6]);
-        optionButton5.setText(Integer.toString(firstNum+4));
-        optionButton5.setBackgroundResource(buttonColors[(firstNum+4)%6]);
-        optionButton6.setText(Integer.toString(firstNum+5));
-        optionButton6.setBackgroundResource(buttonColors[(firstNum+5)%6]);
+
+    void stopTimer(int presentTime){
+        if(presentTime==0) {
+            getImage("FAILURE");
+            gameTimer.cancel();
+        }else{
+            getImage("SUCCESS");
+            gameTimer.cancel();;
+
+        }
+        startButton.setVisibility(View.VISIBLE);
+        timerSetSeekBar.setVisibility(View.VISIBLE);
+        loggerListView.setVisibility(View.INVISIBLE);
+        cityNames.setVisibility(View.VISIBLE);
+        isCounterActive = false;
+        timerTextView.setText("00 : 00");
+        maxTime = 0;
+        firstNum = 0;
+        timerSetSeekBar.setProgress(0);
     }
+
     void timerTextViewSetter(int presentSecond){
         int sec=presentSecond;
         if(isCounterActive) {
@@ -256,6 +201,68 @@ public class MainActivity extends AppCompatActivity {
             second = "0" + seconds;
         }
         timerTextView.setText(minute+" : "+second);
+    }
+
+    void getImage(String TypeImage){
+        try {
+            if(TypeImage.equalsIgnoreCase("SUCCESS")){
+                if(Success==null){
+                    ImageDownloader imageService = new ImageDownloader();
+                    Log.i("IN GET IMAGE","SUCCESS");
+                    Success = imageService.execute("https://chehockey.files.wordpress.com/2014/12/winner.jpg?w=645&h=390").get();
+                }
+                changeImageView.setImageBitmap(Success);
+            } else if(TypeImage.equalsIgnoreCase("FAILURE")){
+                if(Failure==null){
+                    ImageDownloader imageService = new ImageDownloader();
+                    Log.i("IN GET IMAGE","FAILURE");
+                    Failure = imageService.execute("https://tamil.oneindia.com/img/2016/03/08-1457414709-tamilisai-soundararajan46-600.jpg").get();
+                }
+                changeImageView.setImageBitmap(Failure);
+            } else if(TypeImage.equalsIgnoreCase("BOMB")){
+                if(Bomb==null){
+                    ImageDownloader imageService = new ImageDownloader();
+                    Log.i("IN GET IMAGE","BOMB");
+                    Bomb = imageService.execute("https://mundabor.files.wordpress.com/2014/04/bomb.jpg").get();
+                }
+                changeImageView.setImageBitmap(Bomb);
+            } else {
+                if(OnLoad==null){
+                    ImageDownloader imageService = new ImageDownloader();
+                    Log.i("IN GET IMAGE","ONLOAD");
+                    OnLoad = imageService.execute("https://www.thehindu.com/news/national/tamil-nadu/tbhjf5/article24962647.ece/alternates/FREE_660/TH17HRAJARAMANATHAPURAM").get();
+                }
+                changeImageView.setImageBitmap(OnLoad);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void onOptionClicked(View view){
+        Button OptionButton = (Button)view;
+        Log.i("IN CLICK",Integer.toString(MagicNumber));
+        if(Integer.toString(MagicNumber).equalsIgnoreCase(OptionButton.getTag().toString())){
+            stopTimer(1);
+            Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
+        };
+    }
+
+    void optionsButtonViewSetter(int firstNum){
+        optionButton1.setText(Integer.toString(firstNum));
+        optionButton1.setBackgroundResource(buttonColors[(firstNum)%6]);
+        optionButton2.setText(Integer.toString(firstNum+1));
+        optionButton2.setBackgroundResource(buttonColors[(firstNum+1)%6]);
+        optionButton3.setText(Integer.toString(firstNum+2));
+        optionButton3.setBackgroundResource(buttonColors[(firstNum+2)%6]);
+        optionButton4.setText(Integer.toString(firstNum+3));
+        optionButton4.setBackgroundResource(buttonColors[(firstNum+3)%6]);
+        optionButton5.setText(Integer.toString(firstNum+4));
+        optionButton5.setBackgroundResource(buttonColors[(firstNum+4)%6]);
+        optionButton6.setText(Integer.toString(firstNum+5));
+        optionButton6.setBackgroundResource(buttonColors[(firstNum+5)%6]);
     }
 
     class ImageDownloader extends  AsyncTask<String, Void, Bitmap>{
