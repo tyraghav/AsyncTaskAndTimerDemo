@@ -209,28 +209,28 @@ public class MainActivity extends AppCompatActivity {
                 if(Success==null){
                     ImageDownloader imageService = new ImageDownloader();
                     Log.i("IN GET IMAGE","SUCCESS");
-                    Success = imageService.execute("https://chehockey.files.wordpress.com/2014/12/winner.jpg?w=645&h=390").get();
+                    Success = imageService.execute("").get();
                 }
                 changeImageView.setImageBitmap(Success);
             } else if(TypeImage.equalsIgnoreCase("FAILURE")){
                 if(Failure==null){
                     ImageDownloader imageService = new ImageDownloader();
                     Log.i("IN GET IMAGE","FAILURE");
-                    Failure = imageService.execute("https://tamil.oneindia.com/img/2016/03/08-1457414709-tamilisai-soundararajan46-600.jpg").get();
+                    Failure = imageService.execute("").get();
                 }
                 changeImageView.setImageBitmap(Failure);
             } else if(TypeImage.equalsIgnoreCase("BOMB")){
                 if(Bomb==null){
                     ImageDownloader imageService = new ImageDownloader();
                     Log.i("IN GET IMAGE","BOMB");
-                    Bomb = imageService.execute("https://mundabor.files.wordpress.com/2014/04/bomb.jpg").get();
+                    Bomb = imageService.execute("").get();
                 }
                 changeImageView.setImageBitmap(Bomb);
             } else {
                 if(OnLoad==null){
                     ImageDownloader imageService = new ImageDownloader();
                     Log.i("IN GET IMAGE","ONLOAD");
-                    OnLoad = imageService.execute("https://www.thehindu.com/news/national/tamil-nadu/tbhjf5/article24962647.ece/alternates/FREE_660/TH17HRAJARAMANATHAPURAM").get();
+                    OnLoad = imageService.execute("").get();
                 }
                 changeImageView.setImageBitmap(OnLoad);
             }
